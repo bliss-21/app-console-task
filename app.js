@@ -68,10 +68,6 @@ const main = async() => {
 
         guardarDb(tareas.listadoArr);
 
-        //tareas._listado[tarea.id] = tarea;
-
-        //console.log(tareas);
-
         await pausa();
 
     } while (opt !== '0');

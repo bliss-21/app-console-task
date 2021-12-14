@@ -115,12 +115,7 @@ const listadoTareasBorrar = async( tareas = [] ) => {
 
     const { id } = await inquirer.prompt(preguntas);
     return id;
-    /*
-    {
-        value: '1',
-        name: `${ '1.'.green } Crear tarea`
-    },
-    */
+
 }
 
 module.exports = {

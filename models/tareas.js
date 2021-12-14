@@ -2,17 +2,6 @@ const Tarea = require("./tarea");
 
 class Tareas {
 
-
-    /*
-        [
-            {
-            id: '67d0e815-903f-4bec-87b3-781cac97d25a',
-            desc: 'comprar pokemon',
-            completadoEn: null
-            }
-        ]
-    */
-
     _listado = {};
 
     get listadoArr() {
