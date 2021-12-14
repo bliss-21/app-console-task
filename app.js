@@ -1,6 +1,7 @@
 require('colors');
 
-const { inquirerMenu, pausa, leerInput } = require('./helpers/inquirer');
+const { guardarDb, leerDb } = require('./helpers/guardarArchivo');
+const { inquirerMenu, pausa, leerInput, listadoTareasBorrar } = require('./helpers/inquirer');
 const Tarea = require('./models/tarea');
 const Tareas = require('./models/tareas');
 
@@ -11,11 +12,18 @@ const main = async() => {
     let opt = '';
     const tareas = new Tareas();
 
+    const tareaDB = leerDb();
+
+    if (tareaDB) {
+        tareas.cargarTareasFromArray(tareaDB);
+    }
+
+
     do {
 
+        //imprime el menu
         opt = await inquirerMenu();
-        
-        
+   
         switch (opt) {
             case '1':
 
@@ -26,16 +34,17 @@ const main = async() => {
 
             case '2':
 
-                console.log(tareas._listado);
+                tareas.listadoCompleto(true);
 
                 break;
 
             case '3':
 
+                tareas.listarPendientesCompletadas(true);
                 break;
 
             case '4':
-
+                tareas.listarPendientesCompletadas(false);
                 break;
 
             case '5':
@@ -43,7 +52,8 @@ const main = async() => {
                 break;
 
             case '6':
-
+                const id = await listadoTareasBorrar( tareas.listadoArr );
+                console.log(id)
                 break;    
 
             case '0':
@@ -54,6 +64,9 @@ const main = async() => {
             default:
                 break;
         }
+
+
+        guardarDb(tareas.listadoArr);
 
         //tareas._listado[tarea.id] = tarea;
 
