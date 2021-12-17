@@ -106,7 +106,7 @@ const listadoTareasBorrar = async( tareas = [] ) => {
 
     choices.unshift({
         value:'0',
-        name:'0'.yellow + 'Cancelar'
+        name:'X'.red + ' Cancelar'
     })
     const preguntas = [
         {
